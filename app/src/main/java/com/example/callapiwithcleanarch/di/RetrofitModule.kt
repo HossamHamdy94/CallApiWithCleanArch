@@ -1,0 +1,39 @@
+package com.example.callapiwithcleanarch.di
+
+
+import com.example.callapiwithcleanarch.data.source.RemoteDataSource
+import com.example.callapiwithcleanarch.data.source.RemoteDataSourceImp
+import com.example.callapiwithcleanarch.data.source.remote.ApiService
+import com.example.callapiwithcleanarch.utils.NetworkHelper.provideOkHttpClient
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+
+object RetrofitModule {
+
+
+    @Provides
+    fun provideApiSerVice(): ApiService {
+        return Retrofit.Builder()
+            .client(provideOkHttpClient())
+            .baseUrl("https://gateway.marvel.com:443/v1/public/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(apiService: ApiService): RemoteDataSource = RemoteDataSourceImp (apiService)
+
+}
