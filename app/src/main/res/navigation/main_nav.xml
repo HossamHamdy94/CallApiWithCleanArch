@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_nav">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/fragmentAllPhotos">
 
 
+    <fragment
+        tools:layout="@layout/fragment_allphotos"
+        android:id="@+id/fragmentAllPhotos"
+        android:name="com.example.callapiwithcleanarch.presentation.fragments.FragmentAllPhotos"
+        android:label="FragmentAllPhotos" />
 </navigation>
