@@ -1,6 +1,8 @@
 package com.example.callapiwithcleanarch.di
 
 
+import com.example.callapiwithcleanarch.base.CoroutineScopeDispatchers
+import com.example.callapiwithcleanarch.base.ICoroutineScopeDispatchers
 import com.example.callapiwithcleanarch.data.source.RemoteDataSource
 import com.example.callapiwithcleanarch.data.source.RemoteDataSourceImp
 import com.example.callapiwithcleanarch.data.source.remote.ApiService
@@ -36,6 +38,9 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(apiService: ApiService): RemoteDataSource = RemoteDataSourceImp (apiService)
+    fun provideICoroutineScopeDispatchers() :ICoroutineScopeDispatchers = CoroutineScopeDispatchers()
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(apiService: ApiService,iCoroutineScopeDispatchers: ICoroutineScopeDispatchers): RemoteDataSource = RemoteDataSourceImp (apiService,iCoroutineScopeDispatchers)
 
 }

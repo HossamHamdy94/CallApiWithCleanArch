@@ -1,7 +1,9 @@
 package com.example.callapiwithcleanarch
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.callapiwithcleanarch.viewmodels.PhotoScreenViewModel
@@ -25,4 +27,6 @@ class MainActivity : AppCompatActivity() {
     private fun  getUsers() {
         viewModel.getPhotos()
     }
+
+
 }

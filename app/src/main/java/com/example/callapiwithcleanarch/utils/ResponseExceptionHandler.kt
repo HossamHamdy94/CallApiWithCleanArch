@@ -48,7 +48,7 @@ fun Exception.handleHttpException(
             NetworkException()
         }
         else -> {
-            UnknownException(this.message ?: this.stackTraceToString())
+            UnknownException("Some Thing went Wrong")
         }
     }
 }
