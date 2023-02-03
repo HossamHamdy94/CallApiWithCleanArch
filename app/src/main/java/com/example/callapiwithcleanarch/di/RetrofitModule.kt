@@ -4,6 +4,7 @@ package com.example.callapiwithcleanarch.di
 import com.example.callapiwithcleanarch.data.source.RemoteDataSource
 import com.example.callapiwithcleanarch.data.source.RemoteDataSourceImp
 import com.example.callapiwithcleanarch.data.source.remote.ApiService
+import com.example.callapiwithcleanarch.utils.Constants
 import com.example.callapiwithcleanarch.utils.NetworkHelper.provideOkHttpClient
 import dagger.Module
 import dagger.Provides
@@ -21,11 +22,12 @@ import javax.inject.Singleton
 object RetrofitModule {
 
 
+
     @Provides
     fun provideApiSerVice(): ApiService {
         return Retrofit.Builder()
             .client(provideOkHttpClient())
-            .baseUrl("https://gateway.marvel.com:443/v1/public/")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
